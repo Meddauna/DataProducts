@@ -1,0 +1,52 @@
+---
+title: "Model creation and Evaluation"
+author: "Nathan M"
+date: "Sep 24, 2019"
+output: ioslides_presentation
+---
+
+
+## Summary
+
+The purpose of this application is for the user to easily select the variables to use in a linear model and then simply predict the mpg for a new car. While looking at a new car, we sometimes don't have all the information avaiable to make a perfect prediction of the mpg, so we'll use as many or as few variables that we have.
+
+The linear model uses the selected variables to predict the mpg of a new car based on the inputs provided.
+
+The regressions use the mtcars information provided in r
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Preliminary Look
+
+An initial look at the data shows there are many variables that correlate with the mpg of a car
+
+```{r cars, echo=FALSE}
+  pairs(mtcars)
+```
+
+
+## Basic Summary
+
+Using an ANOVA, we've down selected all of the variables in our linear model to only include the ones that correlate well with the final mpg (p<0.05)
+
+These variables include:
+1. Weight (wt)
+2. Engine Displacement (disp)
+3. Number of Cylinders (cyl)
+4. Transmissions Type (am)
+
+## The Final Model
+
+The final Model:
+```{r mod, eval=FALSE}
+  lm(mpg~(wt+disp+cyl)*am, data=mtcars)
+```
+
+```{r modsum, echo=FALSE}
+  summary(lm(mpg~(wt+disp+cyl)*am, data=mtcars))
+```
+
+
